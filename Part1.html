@@ -24,6 +24,10 @@ body {
   background: var(--bg);
   color: var(--ink);
   line-height: 1.7;
+  padding-bottom: 80px; /* space for bottom nav */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* ===== Header ===== */
@@ -32,14 +36,15 @@ header {
   color: #fff;
   padding: 1rem 2rem;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.5px;
 }
 
 /* ===== Main Content ===== */
 main {
-  max-width: 900px;
+  flex: 1;
+  width: min(95%, 900px);
   margin: 2rem auto;
   background: var(--card);
   border-radius: var(--radius);
@@ -58,18 +63,21 @@ main {
 h2 {
   color: var(--accent-dark);
   margin-top: 0.5rem;
+  font-size: 1.3rem;
 }
 
 /* ===== Dropdowns ===== */
 select {
-  padding: 0.3rem 0.4rem;
+  padding: 0.35rem 0.45rem;
   border-radius: 6px;
   border: 1px solid var(--line);
   background: #f9f9f9;
   color: var(--ink);
   font-size: 1rem;
   cursor: pointer;
+  margin: 0 2px;
 }
+
 select:disabled {
   background: #e9f9ee;
   color: #1e1e1e;
@@ -94,13 +102,77 @@ button {
   padding: 0.6rem 1.4rem;
   cursor: pointer;
   font-size: 1rem;
+  transition: background 0.3s;
 }
 button:hover {
   background: var(--accent-dark);
 }
 
-@media (max-width:600px) {
-  main { padding: 1.2rem; }
+/* ===== Bottom Navigation ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.7rem 0.5rem;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: var(--accent-dark);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+  flex: 1;
+  margin: 0 4px;
+}
+
+.bottom-nav a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 900px) {
+  main {
+    padding: 1.5rem;
+    width: 94%;
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 1.2rem;
+    margin: 1rem auto;
+  }
+  select {
+    font-size: 0.95rem;
+  }
+  .bottom-nav {
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+  }
+  .bottom-nav a {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  main {
+    padding: 2.5rem 3rem;
+    font-size: 1.05rem;
+  }
 }
 </style>
 </head>
@@ -219,10 +291,18 @@ button:hover {
   </p>
 
   <footer>
-    <button onclick="window.location.href='Part4.html'">Go to Part 5 →</button>
+    <button onclick="window.location.href='part2.html'">Go to Part 2 →</button>
   </footer>
 </main>
 
+<!-- ===== Bottom Navigation ===== -->
+<nav class="bottom-nav">
+  <a href="index.html">🏠 Home</a>
+  <a href="Part5.html">📗 Part 5</a>
+  <a href="Part6.html">📙 Part 6</a>
+</nav>
+
 </body>
 </html>
+
 
