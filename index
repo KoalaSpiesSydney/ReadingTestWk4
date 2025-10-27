@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>C1 Advanced – Reading Test (Short Version) | Modern English Australia</title>
+
+<style>
+:root {
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --ink:#1e1e1e;
+  --muted:#555;
+  --accent:#1ca0d0;
+  --accent-dark:#047fac;
+  --line:#ddd;
+  --radius:12px;
+  --shadow:0 6px 24px rgba(0,0,0,0.1);
+}
+
+body {
+  margin:0;
+  font-family:"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
+/* ===== Header ===== */
+header {
+  background:linear-gradient(to right,var(--accent),var(--accent-dark));
+  color:white;
+  padding:2rem 1rem;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+header h1 {
+  margin:0;
+  font-size:1.8rem;
+  letter-spacing:1px;
+}
+
+header p {
+  margin-top:.5rem;
+  font-size:1rem;
+  opacity:.9;
+}
+
+/* ===== Main Card ===== */
+main {
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:2rem;
+}
+
+.card {
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  max-width:600px;
+  width:100%;
+  padding:2rem;
+  text-align:center;
+}
+
+.card h2 {
+  color:var(--accent-dark);
+  margin-bottom:1rem;
+}
+
+.card p {
+  margin-bottom:1.5rem;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ===== Links ===== */
+.test-links {
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  margin-top:1.5rem;
+}
+
+a.test-link {
+  text-decoration:none;
+  background:var(--accent);
+  color:white;
+  padding:1rem;
+  border-radius:var(--radius);
+  font-weight:bold;
+  transition:background .3s;
+}
+
+a.test-link:hover {
+  background:var(--accent-dark);
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align:center;
+  padding:1rem;
+  font-size:.9rem;
+  color:var(--muted);
+  border-top:1px solid var(--line);
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>Modern English Australia</h1>
+  <p>Koala Spies Sydney · C1 Advanced Reading Test (Short Version)</p>
+</header>
+
+<main>
+  <div class="card">
+    <h2>C1 Advanced – Reading Test</h2>
+    <p><strong>Note:</strong> This is a shortened version of the official CAE Reading Test, including only <strong>Parts 1, 5, and 6</strong>.</p>
+    <p>Please complete each section in order. You may take notes as you go and review your answers after each part.</p>
+
+    <div class="test-links">
+      <a class="test-link" href="Part1.html">📘 Start Part 1 – Multiple-Choice Cloze</a>
+      <a class="test-link" href="Part5.html">📗 Continue to Part 5 – Reading Comprehension</a>
+      <a class="test-link" href="Part6.html">📙 Finish with Part 6 – Cross-Text Multiple Matching</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © Koala Spies Sydney · Modern English Australia · All Rights Reserved
+</footer>
+</body>
+</html>
