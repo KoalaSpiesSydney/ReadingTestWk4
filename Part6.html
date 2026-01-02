@@ -75,6 +75,32 @@ p {
   color:var(--accent-dark);
 }
 
+/* ===== NEW: inline selects + feedback ===== */
+.gap-select{
+  padding: 0.25rem 0.45rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background:#fff;
+  color: var(--ink);
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0 4px;
+}
+.gap-select.correct{
+  border-color:#1db954;
+  box-shadow:0 0 0 2px rgba(29,185,84,0.15);
+}
+.gap-select.wrong{
+  border-color:#e74c3c;
+  box-shadow:0 0 0 2px rgba(231,76,60,0.12);
+}
+.gap-select:disabled{
+  background:#e9f9ee;
+  border-color:#1db954;
+  font-weight:600;
+}
+
+/* ===== Options ===== */
 .options {
   background:#f0f9fd;
   padding:1rem;
@@ -83,9 +109,74 @@ p {
   font-size:1rem;
   line-height:1.6;
 }
+.options p { margin:0.5rem 0; }
 
-.options p {
-  margin:0.5rem 0;
+/* ===== NEW: Submit block ===== */
+.submit-block{
+  margin-top: 1.6rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfdff;
+}
+.submit-row{
+  display:flex;
+  gap:0.75rem;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
+.submit-actions{
+  display:flex;
+  gap:0.6rem;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.score-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.45rem 0.75rem;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:600;
+}
+.score-pill strong{ color: var(--accent-dark); }
+
+.small-btn{
+  background: #fff;
+  color: var(--accent-dark);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 1.0rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.small-btn:hover{
+  background: #f0f9fd;
+  border-color: var(--accent);
+}
+
+#answerKey{
+  margin-top:0.9rem;
+  display:none;
+  border-top:1px solid var(--line);
+  padding-top:0.9rem;
+  color: var(--muted);
+}
+.key-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1rem;
+  margin-top:0.4rem;
+  font-size:0.98rem;
+}
+.notice{
+  margin-top:0.7rem;
+  color: var(--muted);
+  font-size:0.95rem;
 }
 
 /* ===== Footer ===== */
@@ -107,10 +198,7 @@ button {
   font-size:1rem;
   transition:background 0.3s;
 }
-
-button:hover {
-  background:var(--accent-dark);
-}
+button:hover { background:var(--accent-dark); }
 
 /* ===== Bottom Navigation ===== */
 .bottom-nav {
@@ -139,24 +227,19 @@ button:hover {
   flex:1;
   margin:0 4px;
 }
-
-.bottom-nav a:hover {
-  background:var(--accent);
-  color:#fff;
-}
+.bottom-nav a:hover { background:var(--accent); color:#fff; }
 
 /* ===== Responsive Adjustments ===== */
 @media (max-width:900px) {
   main { padding:1.5rem; width:94%; }
 }
-
 @media (max-width:600px) {
   main { padding:1.2rem; margin:1rem auto; }
   .bottom-nav { padding:0.5rem; justify-content:space-evenly; }
   .bottom-nav a { font-size:0.9rem; padding:0.5rem; }
   p, .options { font-size:0.95rem; }
+  .gap-select{ font-size:0.95rem; }
 }
-
 @media (min-width:1000px) {
   main { padding:2.5rem 3rem; font-size:1.05rem; }
 }
@@ -172,43 +255,76 @@ button:hover {
 <main>
   <div class="instructions">
     <p><strong>Example (0) + Questions 1–4</strong><br>
-    You are going to read an article about decision-making.  
-    Four paragraph endings have been removed.  
-    Choose from the endings <strong>A–E</strong> the one which fits best at the end of each paragraph (<strong>1–4</strong>).  
+    You are going to read an article about decision-making.
+    Four paragraph endings have been removed.
+    Choose from the endings <strong>A–E</strong> the one which fits best at the end of each paragraph (<strong>1–4</strong>).
     There is <strong>one extra ending</strong> you do not need to use.</p>
   </div>
 
   <h2>The Psychology of Decision-Making</h2>
 
   <p>
-    Every day, we make hundreds of decisions — from what to wear to how to respond to an email.  
-    Most of these choices happen automatically, without conscious thought.  
-    However, when the stakes are high, we suddenly become aware of how complex the process can be.  
-    <span class="gap">(0)</span> <b>[Example: B – In such moments, intuition often takes over, guiding us toward choices that feel right even when we can’t explain them.]</b>
+    Every day, we make hundreds of decisions — from what to wear to how to respond to an email.
+    Most of these choices happen automatically, without conscious thought.
+    However, when the stakes are high, we suddenly become aware of how complex the process can be.
+    <span class="gap">(0)</span>
+    <b>[Example: B – In such moments, intuition often takes over, guiding us toward choices that feel right even when we can’t explain them.]</b>
   </p>
 
   <p>
-    One explanation lies in the concept of <em>cognitive bias</em>.  
-    Our brains rely on mental shortcuts, or “heuristics,” to save time and effort — but these same shortcuts can also distort how we see reality.  
+    One explanation lies in the concept of <em>cognitive bias</em>.
+    Our brains rely on mental shortcuts, or “heuristics,” to save time and effort — but these same shortcuts can also distort how we see reality.
     <span class="gap">(1)</span>
+    <select class="gap-select" data-q="1" aria-label="Choose ending for gap 1">
+      <option value="">— Select —</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="E">E</option>
+    </select>
   </p>
 
   <p>
-    Emotion plays a powerful role too.  
-    Even when we believe we are acting rationally, our choices often reflect what we feel more than what we think.  
+    Emotion plays a powerful role too.
+    Even when we believe we are acting rationally, our choices often reflect what we feel more than what we think.
     <span class="gap">(2)</span>
+    <select class="gap-select" data-q="2" aria-label="Choose ending for gap 2">
+      <option value="">— Select —</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="E">E</option>
+    </select>
   </p>
 
   <p>
-    Over time, the sheer number of small decisions we make each day can wear us down.  
-    This “decision fatigue” explains why willpower fades as the day goes on and why even simple choices begin to feel exhausting.  
+    Over time, the sheer number of small decisions we make each day can wear us down.
+    This “decision fatigue” explains why willpower fades as the day goes on and why even simple choices begin to feel exhausting.
     <span class="gap">(3)</span>
+    <select class="gap-select" data-q="3" aria-label="Choose ending for gap 3">
+      <option value="">— Select —</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="E">E</option>
+    </select>
   </p>
 
   <p>
-    Technology has added yet another layer of complexity.  
-    With endless entertainment, shopping options, and social media content at our fingertips, we face an overwhelming amount of information.  
+    Technology has added yet another layer of complexity.
+    With endless entertainment, shopping options, and social media content at our fingertips, we face an overwhelming amount of information.
     <span class="gap">(4)</span>
+    <select class="gap-select" data-q="4" aria-label="Choose ending for gap 4">
+      <option value="">— Select —</option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="E">E</option>
+    </select>
   </p>
 
   <div class="options">
@@ -218,6 +334,30 @@ button:hover {
     <p><strong>D.</strong> Advertisers exploit this by appealing to our emotions rather than our logic, knowing that feelings often override facts.</p>
     <p><strong>E.</strong> Paradoxically, this abundance of choice can leave us feeling anxious and indecisive instead of free and empowered.</p>
   </div>
+
+  <!-- ===== NEW: Submit & Score block ===== -->
+  <section class="submit-block" aria-label="Submit answers and score">
+    <div class="submit-row">
+      <div class="score-pill" id="scorePill">
+        Score: <strong id="scoreText">—</strong>
+      </div>
+
+      <div class="submit-actions">
+        <button type="button" id="submitBtn">Submit answers</button>
+        <button type="button" class="small-btn" id="tryAgainBtn">Try again</button>
+        <button type="button" class="small-btn" id="toggleKeyBtn">Show answer key</button>
+      </div>
+    </div>
+
+    <div class="notice" id="noticeText">
+      Choose an ending for gaps (1–4), then submit to see your score.
+    </div>
+
+    <div id="answerKey">
+      <strong>Answer key</strong>
+      <div class="key-grid" id="keyGrid"></div>
+    </div>
+  </section>
 
   <footer>
     <button onclick="window.location.href='finish.html'">Finish Test →</button>
@@ -230,6 +370,102 @@ button:hover {
   <a href="Part1.html">📘 Part 1</a>
   <a href="Part5.html">📗 Part 5</a>
 </nav>
+
+<script>
+/* ===== Answer checking =====
+   (Based on your text, these are the best fits.)
+   Change if you want different official answers.
+*/
+const ANSWERS = {
+  1: "C",
+  2: "D",
+  3: "A",
+  4: "E",
+};
+
+const selects = Array.from(document.querySelectorAll('.gap-select[data-q]'));
+const submitBtn = document.getElementById('submitBtn');
+const tryAgainBtn = document.getElementById('tryAgainBtn');
+const toggleKeyBtn = document.getElementById('toggleKeyBtn');
+const scoreText = document.getElementById('scoreText');
+const noticeText = document.getElementById('noticeText');
+const answerKey = document.getElementById('answerKey');
+const keyGrid = document.getElementById('keyGrid');
+
+function buildKey(){
+  keyGrid.innerHTML = "";
+  Object.keys(ANSWERS).sort((a,b)=>Number(a)-Number(b)).forEach(q=>{
+    const div = document.createElement('div');
+    div.textContent = `(${q}) ${ANSWERS[q]}`;
+    keyGrid.appendChild(div);
+  });
+}
+
+function allAnswered(){
+  return selects.every(sel => sel.value && sel.value.trim() !== "");
+}
+
+function clearStates(){
+  selects.forEach(sel=>{
+    sel.classList.remove('correct','wrong');
+    sel.disabled = false;
+  });
+}
+
+function grade(){
+  if (!allAnswered()){
+    noticeText.textContent = "Please answer all gaps (1–4) before submitting.";
+    return;
+  }
+
+  let score = 0;
+
+  selects.forEach(sel=>{
+    const q = Number(sel.dataset.q);
+    const chosen = (sel.value || "").trim();
+    const correct = (ANSWERS[q] || "").trim();
+
+    sel.classList.remove('correct','wrong');
+
+    if (chosen === correct){
+      score++;
+      sel.classList.add('correct');
+      sel.disabled = true; // lock correct
+    } else {
+      sel.classList.add('wrong');
+      sel.disabled = false; // allow changes
+    }
+  });
+
+  scoreText.textContent = `${score} / ${selects.length}`;
+
+  if (score === selects.length){
+    noticeText.textContent = "Perfect score. Nice work.";
+  } else {
+    noticeText.textContent = "Correct answers are locked. Fix the red ones and submit again.";
+  }
+}
+
+submitBtn.addEventListener('click', grade);
+
+tryAgainBtn.addEventListener('click', ()=>{
+  selects.forEach(sel=>{
+    sel.value = "";
+    sel.classList.remove('correct','wrong');
+    sel.disabled = false;
+  });
+  scoreText.textContent = "—";
+  noticeText.textContent = "Reset complete. Try again.";
+});
+
+toggleKeyBtn.addEventListener('click', ()=>{
+  const showing = answerKey.style.display === "block";
+  answerKey.style.display = showing ? "none" : "block";
+  toggleKeyBtn.textContent = showing ? "Show answer key" : "Hide answer key";
+});
+
+buildKey();
+</script>
 
 </body>
 </html>
