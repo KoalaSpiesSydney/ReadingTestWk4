@@ -79,6 +79,8 @@ label {
   margin:0.3rem 0;
   cursor:pointer;
   line-height:1.5;
+  border-radius:8px;
+  padding:0.15rem 0.35rem;
 }
 
 label.correct {
@@ -86,6 +88,85 @@ label.correct {
   border-left:4px solid var(--accent-dark);
   padding:0.2rem 0.4rem;
   font-weight:600;
+}
+
+/* ===== NEW: Answer feedback (radio) ===== */
+label.is-correct{
+  background:#e9f9ee;
+  border-left:4px solid #1db954;
+  font-weight:600;
+}
+label.is-wrong{
+  background:#fff3f3;
+  border-left:4px solid #e74c3c;
+}
+
+/* ===== NEW: Submit block ===== */
+.submit-block{
+  margin-top: 1.6rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfdff;
+}
+.submit-row{
+  display:flex;
+  gap:0.75rem;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
+.submit-actions{
+  display:flex;
+  gap:0.6rem;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.score-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.45rem 0.75rem;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background:#fff;
+  font-weight:600;
+}
+.score-pill strong{ color: var(--accent-dark); }
+
+.small-btn{
+  background: #fff;
+  color: var(--accent-dark);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 1.0rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.small-btn:hover{
+  background: #f0f9fd;
+  border-color: var(--accent);
+}
+
+#answerKey{
+  margin-top:0.9rem;
+  display:none;
+  border-top:1px solid var(--line);
+  padding-top:0.9rem;
+  color: var(--muted);
+}
+.key-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1rem;
+  margin-top:0.4rem;
+  font-size:0.98rem;
+}
+.notice{
+  margin-top:0.7rem;
+  color: var(--muted);
+  font-size:0.95rem;
 }
 
 /* ===== Footer ===== */
@@ -191,7 +272,7 @@ button:hover {
   </p>
 
   <!-- Example 0 -->
-  <div class="question">
+  <div class="question" data-q="0">
     <p><strong>(0)</strong> What best describes the writer’s tone in the opening paragraph?</p>
     <label>A. Critical but hopeful.</label>
     <label>B. Amused and indifferent.</label>
@@ -200,69 +281,93 @@ button:hover {
   </div>
 
   <!-- Questions 1–8 -->
-  <div class="question">
+  <div class="question" data-q="1">
     <p><strong>1.</strong> What is the writer’s main point in the first paragraph?</p>
-    <label><input type="radio" name="q1"> A. Sustainable fashion will soon replace traditional fashion entirely.</label>
-    <label><input type="radio" name="q1"> B. The fashion industry has always been aware of sustainability issues.</label>
-    <label><input type="radio" name="q1"> C. Sustainable fashion was initially underestimated but is now gaining importance.</label>
-    <label><input type="radio" name="q1"> D. The concept of sustainability has made fashion less appealing.</label>
+    <label><input type="radio" name="q1" value="A"> A. Sustainable fashion will soon replace traditional fashion entirely.</label>
+    <label><input type="radio" name="q1" value="B"> B. The fashion industry has always been aware of sustainability issues.</label>
+    <label><input type="radio" name="q1" value="C"> C. Sustainable fashion was initially underestimated but is now gaining importance.</label>
+    <label><input type="radio" name="q1" value="D"> D. The concept of sustainability has made fashion less appealing.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="2">
     <p><strong>2.</strong> What does the phrase <em>“the real cost is often paid elsewhere”</em> suggest?</p>
-    <label><input type="radio" name="q2"> A. Consumers are unaware of the financial side of the industry.</label>
-    <label><input type="radio" name="q2"> B. The environmental and social damage outweighs the low prices.</label>
-    <label><input type="radio" name="q2"> C. Clothing companies are losing profits due to poor management.</label>
-    <label><input type="radio" name="q2"> D. Designers have overestimated the public’s concern for ethics.</label>
+    <label><input type="radio" name="q2" value="A"> A. Consumers are unaware of the financial side of the industry.</label>
+    <label><input type="radio" name="q2" value="B"> B. The environmental and social damage outweighs the low prices.</label>
+    <label><input type="radio" name="q2" value="C"> C. Clothing companies are losing profits due to poor management.</label>
+    <label><input type="radio" name="q2" value="D"> D. Designers have overestimated the public’s concern for ethics.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="3">
     <p><strong>3.</strong> According to the text, the “slow fashion” movement encourages</p>
-    <label><input type="radio" name="q3"> A. reducing waste through creative reuse.</label>
-    <label><input type="radio" name="q3"> B. outsourcing production to cheaper markets.</label>
-    <label><input type="radio" name="q3"> C. expanding fashion shows to new audiences.</label>
-    <label><input type="radio" name="q3"> D. mass-producing eco-friendly garments.</label>
+    <label><input type="radio" name="q3" value="A"> A. reducing waste through creative reuse.</label>
+    <label><input type="radio" name="q3" value="B"> B. outsourcing production to cheaper markets.</label>
+    <label><input type="radio" name="q3" value="C"> C. expanding fashion shows to new audiences.</label>
+    <label><input type="radio" name="q3" value="D"> D. mass-producing eco-friendly garments.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="4">
     <p><strong>4.</strong> What does the insider quoted in the final paragraph believe?</p>
-    <label><input type="radio" name="q4"> A. Only large brands can afford sustainable practices.</label>
-    <label><input type="radio" name="q4"> B. Consumers must take responsibility for their buying habits.</label>
-    <label><input type="radio" name="q4"> C. The industry’s efforts are already sufficient.</label>
-    <label><input type="radio" name="q4"> D. Marketing slogans will solve the environmental crisis.</label>
+    <label><input type="radio" name="q4" value="A"> A. Only large brands can afford sustainable practices.</label>
+    <label><input type="radio" name="q4" value="B"> B. Consumers must take responsibility for their buying habits.</label>
+    <label><input type="radio" name="q4" value="C"> C. The industry’s efforts are already sufficient.</label>
+    <label><input type="radio" name="q4" value="D"> D. Marketing slogans will solve the environmental crisis.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="5">
     <p><strong>5.</strong> What does the text imply about fast fashion’s popularity?</p>
-    <label><input type="radio" name="q5"> A. It is declining as people become more aware of its impact.</label>
-    <label><input type="radio" name="q5"> B. It continues to dominate due to celebrity influence.</label>
-    <label><input type="radio" name="q5"> C. It has never been widely adopted outside major cities.</label>
-    <label><input type="radio" name="q5"> D. It is considered a luxury segment of the industry.</label>
+    <label><input type="radio" name="q5" value="A"> A. It is declining as people become more aware of its impact.</label>
+    <label><input type="radio" name="q5" value="B"> B. It continues to dominate due to celebrity influence.</label>
+    <label><input type="radio" name="q5" value="C"> C. It has never been widely adopted outside major cities.</label>
+    <label><input type="radio" name="q5" value="D"> D. It is considered a luxury segment of the industry.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="6">
     <p><strong>6.</strong> What is the writer’s opinion of designers experimenting with new materials?</p>
-    <label><input type="radio" name="q6"> A. They are making a genuine effort to change the industry.</label>
-    <label><input type="radio" name="q6"> B. They risk alienating traditional customers.</label>
-    <label><input type="radio" name="q6"> C. They are unlikely to have a lasting effect.</label>
-    <label><input type="radio" name="q6"> D. They only do it to attract publicity.</label>
+    <label><input type="radio" name="q6" value="A"> A. They are making a genuine effort to change the industry.</label>
+    <label><input type="radio" name="q6" value="B"> B. They risk alienating traditional customers.</label>
+    <label><input type="radio" name="q6" value="C"> C. They are unlikely to have a lasting effect.</label>
+    <label><input type="radio" name="q6" value="D"> D. They only do it to attract publicity.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="7">
     <p><strong>7.</strong> Which of the following best summarises the overall message of the text?</p>
-    <label><input type="radio" name="q7"> A. Fashion is moving too slowly to address environmental concerns.</label>
-    <label><input type="radio" name="q7"> B. Consumers and companies share responsibility for sustainable change.</label>
-    <label><input type="radio" name="q7"> C. The market for ethical clothing is oversaturated.</label>
-    <label><input type="radio" name="q7"> D. Environmental damage caused by fashion is irreversible.</label>
+    <label><input type="radio" name="q7" value="A"> A. Fashion is moving too slowly to address environmental concerns.</label>
+    <label><input type="radio" name="q7" value="B"> B. Consumers and companies share responsibility for sustainable change.</label>
+    <label><input type="radio" name="q7" value="C"> C. The market for ethical clothing is oversaturated.</label>
+    <label><input type="radio" name="q7" value="D"> D. Environmental damage caused by fashion is irreversible.</label>
   </div>
 
-  <div class="question">
+  <div class="question" data-q="8">
     <p><strong>8.</strong> What is implied by the phrase <em>“redefine what success and self-expression look like”</em>?</p>
-    <label><input type="radio" name="q8"> A. People must value creativity over consumption.</label>
-    <label><input type="radio" name="q8"> B. Designers should imitate earlier styles of fashion.</label>
-    <label><input type="radio" name="q8"> C. Sustainability is incompatible with personal style.</label>
-    <label><input type="radio" name="q8"> D. Ethical choices are mostly symbolic gestures.</label>
+    <label><input type="radio" name="q8" value="A"> A. People must value creativity over consumption.</label>
+    <label><input type="radio" name="q8" value="B"> B. Designers should imitate earlier styles of fashion.</label>
+    <label><input type="radio" name="q8" value="C"> C. Sustainability is incompatible with personal style.</label>
+    <label><input type="radio" name="q8" value="D"> D. Ethical choices are mostly symbolic gestures.</label>
   </div>
+
+  <!-- ===== NEW: Submit & Score block ===== -->
+  <section class="submit-block" aria-label="Submit answers and score">
+    <div class="submit-row">
+      <div class="score-pill" id="scorePill">
+        Score: <strong id="scoreText">—</strong>
+      </div>
+
+      <div class="submit-actions">
+        <button type="button" id="submitBtn">Submit answers</button>
+        <button type="button" class="small-btn" id="tryAgainBtn">Try again</button>
+        <button type="button" class="small-btn" id="toggleKeyBtn">Show answer key</button>
+      </div>
+    </div>
+
+    <div class="notice" id="noticeText">
+      Answer questions 1–8, then submit to see your score.
+    </div>
+
+    <div id="answerKey">
+      <strong>Answer key</strong>
+      <div class="key-grid" id="keyGrid"></div>
+    </div>
+  </section>
 
   <footer>
     <button onclick="window.location.href='Part6.html'">Go to Part 6 →</button>
@@ -276,5 +381,146 @@ button:hover {
   <a href="Part6.html">📙 Part 6</a>
 </nav>
 
+<script>
+/* ===== Answer checking =====
+   Replace these with your official answers if different.
+   (Values are A/B/C/D)
+*/
+const ANSWERS = {
+  1: "C",
+  2: "B",
+  3: "A",
+  4: "B",
+  5: "A",
+  6: "A",
+  7: "B",
+  8: "A",
+};
+
+const submitBtn = document.getElementById('submitBtn');
+const tryAgainBtn = document.getElementById('tryAgainBtn');
+const toggleKeyBtn = document.getElementById('toggleKeyBtn');
+const scoreText = document.getElementById('scoreText');
+const noticeText = document.getElementById('noticeText');
+const answerKey = document.getElementById('answerKey');
+const keyGrid = document.getElementById('keyGrid');
+
+const questions = Array.from(document.querySelectorAll('.question[data-q]'))
+  .filter(q => q.dataset.q !== "0");
+
+function buildKey(){
+  keyGrid.innerHTML = "";
+  Object.keys(ANSWERS).sort((a,b)=>Number(a)-Number(b)).forEach(n=>{
+    const div = document.createElement('div');
+    div.textContent = `(${n}) ${ANSWERS[n]}`;
+    keyGrid.appendChild(div);
+  });
+}
+
+function getSelected(qNum){
+  const checked = document.querySelector(`input[name="q${qNum}"]:checked`);
+  return checked ? checked.value : "";
+}
+
+function clearFeedbackForQuestion(questionEl){
+  const labels = Array.from(questionEl.querySelectorAll('label'));
+  labels.forEach(l => l.classList.remove('is-correct','is-wrong'));
+}
+
+function disableCorrectChoice(questionEl, correctValue){
+  const inputs = Array.from(questionEl.querySelectorAll('input[type="radio"]'));
+  inputs.forEach(inp=>{
+    const label = inp.closest('label');
+    if (inp.value === correctValue){
+      inp.disabled = true; // lock the correct answer once chosen correctly
+      if (label) label.classList.add('is-correct');
+    } else {
+      inp.disabled = false; // keep others available to change
+    }
+  });
+}
+
+function markWrongChoice(questionEl, chosenValue){
+  const chosenInput = questionEl.querySelector(`input[value="${chosenValue}"]`);
+  if (!chosenInput) return;
+  const label = chosenInput.closest('label');
+  if (label) label.classList.add('is-wrong');
+}
+
+function allAnswered(){
+  return Object.keys(ANSWERS).every(q => getSelected(q) !== "");
+}
+
+function grade(){
+  if (!allAnswered()){
+    noticeText.textContent = "Please answer all questions (1–8) before submitting.";
+    return;
+  }
+
+  let score = 0;
+
+  Object.keys(ANSWERS).forEach(qStr=>{
+    const q = Number(qStr);
+    const correct = ANSWERS[q];
+    const chosen = getSelected(q);
+
+    const questionEl = document.querySelector(`.question[data-q="${q}"]`);
+    if (!questionEl) return;
+
+    clearFeedbackForQuestion(questionEl);
+
+    if (chosen === correct){
+      score++;
+      disableCorrectChoice(questionEl, correct);
+    } else {
+      // Keep everything enabled (so they can change), but mark their chosen as wrong
+      markWrongChoice(questionEl, chosen);
+      // ensure radios stay enabled so they can try again
+      const inputs = Array.from(questionEl.querySelectorAll('input[type="radio"]'));
+      inputs.forEach(inp => inp.disabled = false);
+    }
+  });
+
+  scoreText.textContent = `${score} / ${Object.keys(ANSWERS).length}`;
+
+  if (score === Object.keys(ANSWERS).length){
+    noticeText.textContent = "Perfect score. Nice work.";
+  } else {
+    noticeText.textContent = "Correct choices are highlighted. Change the red ones and submit again.";
+  }
+}
+
+submitBtn.addEventListener('click', grade);
+
+tryAgainBtn.addEventListener('click', ()=>{
+  // reset radios + feedback for q1–q8 only
+  Object.keys(ANSWERS).forEach(qStr=>{
+    const q = Number(qStr);
+    const questionEl = document.querySelector(`.question[data-q="${q}"]`);
+    if (!questionEl) return;
+
+    clearFeedbackForQuestion(questionEl);
+
+    const inputs = Array.from(questionEl.querySelectorAll('input[type="radio"]'));
+    inputs.forEach(inp=>{
+      inp.checked = false;
+      inp.disabled = false;
+    });
+  });
+
+  scoreText.textContent = "—";
+  noticeText.textContent = "Reset complete. Try again.";
+});
+
+toggleKeyBtn.addEventListener('click', ()=>{
+  const showing = answerKey.style.display === "block";
+  answerKey.style.display = showing ? "none" : "block";
+  toggleKeyBtn.textContent = showing ? "Show answer key" : "Hide answer key";
+});
+
+buildKey();
+</script>
+
 </body>
 </html>
+
